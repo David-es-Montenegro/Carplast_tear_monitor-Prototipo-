@@ -1,9 +1,11 @@
-String parada1 = "100000", parada2 = "110000", parada3 = "010000", parada4 = "001010", parada5 = "100001", parada6 = "111000";
-int countParada1 = 0, countParada2 = 0, countParada3 = 0, countParada4 = 0, countParada5 = 0, countParada6 = 0;
-float tempoParada1 = 0, tempoParada2 = 0, tempoParada3 = 0, tempoParada4 = 0, tempoParada5 = 0, tempoParada6 = 0;
-unsigned long tempoInicial, tempoFinal, decorrido = 0;
-unsigned long horaDeLigacao = 0, tempoParado = 0, tempoLigado = 0;
-int eficienciaTotal = 0, perdaParada1 = 0, perdaParada2 = 0, perdaParada3 = 0, perdaParada4 = 0, perdaParada5 = 0, perdaParada6 = 0;
+#define pino1 16 //D0
+#define pino2 5  //D1
+
+const unsigned int paradas[6] = {100000, 110000, 000001, 100001,010001, 000100};
+unsigned int qntParadas[6];
+float tempoParadas[6], eficienciaTotal = 0; perdasEficienciaParadas[6];
+unsigned long tempoInicial, tempoFinal, decorrido = 0, horaDeLigacao = 0, tempoParado = 0, tempoLigado = 0;
+
 
 
 void setup() {

@@ -2,7 +2,8 @@ const int pinos[]{ 16, 5, 4, 2, 14, 12, 13 };  //D0 D1 D2 D4 D5 D6 D7
 
 const String paradas[6] = { "1100000", "1110000", "1000001", "1100001", "1010001", "1000100" };
 unsigned int qntParadas[6];
-float tempoParadas[6], eficienciaTotal = 0, perdasEficienciaParadas[6], tempoMedio[6], tempoParado = 0, tempoLigado = 0;;
+float tempoParadas[6], eficienciaTotal = 0, perdasEficienciaParadas[6], tempoMedio[6], tempoParado = 0, tempoLigado = 0;
+;
 unsigned long tempoInicial, tempoFinal, decorrido = 0, horaDeLigacao = 0;
 
 
@@ -30,7 +31,7 @@ void loop() {
 String leitura() {
   String sequencia = "1";
 
-  for (int i = 0; i < 6; i++){
+  for (int i = 0; i < 6; i++) {
     sequencia = sequencia + digitalRead(pinos[i]);
   }
 
@@ -39,6 +40,12 @@ String leitura() {
 
 void mostrador() {
   calculador();
+
+  for (int i = 0; i < 30; i++){
+    Serial.println("\n");
+  }
+
+  Serial.println("==========================================================================================================================================================================================================================");
   Serial.println("Eficiencia: " + String(eficienciaTotal));
   Serial.println("tempo ligado: " + String(tempoLigado));
   Serial.println("tempo em paradas: " + String(tempoParado));
@@ -49,6 +56,7 @@ void mostrador() {
     codParada.remove(0, 1);
     Serial.println("parada" + String((i + 1)) + ": " + codParada + " paradas: " + String(qntParadas[i]) + " tempo total: " + String(tempoParadas[i]) + " tempo medio: " + String(tempoMedio[i]) + " perda de eficiencia causada: " + perdasEficienciaParadas[i] + "%");
   }
+  Serial.println("==========================================================================================================================================================================================================================");
 }
 
 void calculador() {
@@ -64,11 +72,11 @@ void calculador() {
 
   eficienciaTotal = 100 - ((tempoParado * 100) / tempoLigado);
 
-  for (int i = 0; i < 6; i++){
-    tempoMedio[i] = tempoParadas[i] / qntParadas [i];
+  for (int i = 0; i < 6; i++) {
+    tempoMedio[i] = tempoParadas[i] / qntParadas[i];
   }
 
-  for (int i = 0; i < 6; i++){
+  for (int i = 0; i < 6; i++) {
     perdasEficienciaParadas[i] = ((tempoParadas[i] * 100) / tempoLigado);
   }
 }
